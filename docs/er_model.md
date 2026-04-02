@@ -2,64 +2,72 @@
 
 ```mermaid
 erDiagram
-  STUDENTS ||--o{ ENROLLMENTS : has
-  COURSES ||--o{ ENROLLMENTS : includes
-  TEACHERS ||--o{ COURSES : teaches
-  COURSES ||--o{ LESSONS : contains
-  ENROLLMENTS ||--o{ PAYMENTS : has
+    DOCTORS ||--o{ PATIENTS : supervises
+    PATIENTS ||--o{ SELF_CONTROL_ENTRIES : records
+    ACTIONS ||--o{ SELF_CONTROL_ENTRIES : used_in
+    SYMPTOMS ||--o{ SELF_CONTROL_ENTRIES : fixed_in
+    PATIENTS ||--o{ REPORT_HISTORY : generates
+    DOCTORS ||--o{ REPORT_HISTORY : receives
 
-  STUDENTS {
-    int student_id PK
-    text full_name
-    text email
-    text phone
-    date registration_date
-    text status
-  }
+    DOCTORS {
+        int doctor_id PK
+        text full_name
+        text specialization
+        text email
+        text phone
+        date hire_date
+    }
 
-  TEACHERS {
-    int teacher_id PK
-    text full_name
-    text email
-    text specialization
-    date hire_date
-  }
+    PATIENTS {
+        int patient_id PK
+        text full_name
+        date birth_date
+        text gender
+        text phone
+        text email
+        date registration_date
+        int assigned_doctor_id FK
+    }
 
-  COURSES {
-    int course_id PK
-    text title
-    text category
-    text level
-    numeric price
-    int teacher_id FK
-    date start_date
-    date end_date
-  }
+    ACTIONS {
+        int action_id PK
+        text action_name
+        text action_type
+        text intensity_level
+        text description
+    }
 
-  LESSONS {
-    int lesson_id PK
-    int course_id FK
-    text lesson_title
-    date lesson_date
-    int duration_minutes
-    text format
-  }
+    SYMPTOMS {
+        int symptom_id PK
+        text symptom_name
+        text symptom_type
+        text severity_scale
+        text description
+    }
 
-  ENROLLMENTS {
-    int enrollment_id PK
-    int student_id FK
-    int course_id FK
-    date enrollment_date
-    int progress_percent
-    text completion_status
-  }
+    SELF_CONTROL_ENTRIES {
+        int entry_id PK
+        int patient_id FK
+        int action_id FK
+        int symptom_id FK
+        text entry_datetime
+        int wellbeing_score
+        int pulse
+        int systolic_pressure
+        int diastolic_pressure
+        numeric temperature
+        text data_source
+        text notes
+    }
 
-  PAYMENTS {
-    int payment_id PK
-    int enrollment_id FK
-    date payment_date
-    numeric amount
-    text payment_method
-    text payment_status
-  }
+    REPORT_HISTORY {
+        int report_id PK
+        int patient_id FK
+        int doctor_id FK
+        text report_type
+        date period_start
+        date period_end
+        text generated_at
+        text delivery_status
+    }
 ```

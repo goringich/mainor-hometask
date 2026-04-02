@@ -1,49 +1,50 @@
-INSERT INTO students VALUES
-  (1, 'Ivan Petrov', 'ivan.petrov@example.com', '+79990000001', '2025-09-01', 'active'),
-  (2, 'Anna Smirnova', 'anna.smirnova@example.com', '+79990000002', '2025-09-03', 'active'),
-  (3, 'Pavel Orlov', 'pavel.orlov@example.com', '+79990000003', '2025-09-05', 'inactive'),
-  (4, 'Maria Volkova', 'maria.volkova@example.com', '+79990000004', '2025-09-08', 'active'),
-  (5, 'Egor Sokolov', 'egor.sokolov@example.com', '+79990000005', '2025-09-10', 'active');
+PRAGMA foreign_keys = ON;
 
-INSERT INTO teachers VALUES
-  (1, 'Olga Romanova', 'olga.romanova@example.com', 'Databases', '2024-02-10'),
-  (2, 'Dmitry Fedorov', 'dmitry.fedorov@example.com', 'Python', '2024-03-15'),
-  (3, 'Elena Morozova', 'elena.morozova@example.com', 'Web Development', '2024-04-20');
+INSERT INTO doctors (doctor_id, full_name, specialization, email, phone, hire_date) VALUES
+    (1, 'Иванова Мария Сергеевна', 'Терапевт', 'ivanova.ms@edms.local', '+7-901-100-10-01', '2022-02-14'),
+    (2, 'Смирнов Алексей Павлович', 'Кардиолог', 'smirnov.ap@edms.local', '+7-901-100-10-02', '2021-09-01'),
+    (3, 'Кузнецова Елена Игоревна', 'Эндокринолог', 'kuznetsova.ei@edms.local', '+7-901-100-10-03', '2020-11-20'),
+    (4, 'Волков Даниил Олегович', 'Врач общей практики', 'volkov.do@edms.local', '+7-901-100-10-04', '2023-03-10'),
+    (5, 'Морозова Анна Викторовна', 'Врач ЛФК', 'morozova.av@edms.local', '+7-901-100-10-05', '2024-01-15');
 
-INSERT INTO courses VALUES
-  (1, 'SQL Basics', 'Databases', 'beginner', 12000, 1, '2025-10-01', '2025-11-15'),
-  (2, 'Python for Analytics', 'Programming', 'intermediate', 18000, 2, '2025-10-05', '2025-12-01'),
-  (3, 'Frontend Start', 'Web Development', 'beginner', 15000, 3, '2025-10-07', '2025-11-25'),
-  (4, 'Advanced SQL Reports', 'Databases', 'advanced', 22000, 1, '2025-11-01', '2025-12-20');
+INSERT INTO patients (patient_id, full_name, birth_date, gender, phone, email, registration_date, assigned_doctor_id) VALUES
+    (1, 'Пушкарёв Дмитрий Алексеевич', '2005-07-31', 'M', '+7-910-200-00-01', 'pushkarev.da@edms.local', '2026-03-01', 2),
+    (2, 'Ким Игорь Геннадьевич', '2004-06-18', 'M', '+7-910-200-00-02', 'kim.ig@edms.local', '2026-03-02', 4),
+    (3, 'Орлова Анна Михайловна', '1999-12-05', 'F', '+7-910-200-00-03', 'orlova.am@edms.local', '2026-03-03', 1),
+    (4, 'Лебедев Максим Сергеевич', '2001-08-22', 'M', '+7-910-200-00-04', 'lebedev.ms@edms.local', '2026-03-04', 3),
+    (5, 'Васильева Екатерина Павловна', '2000-02-11', 'F', '+7-910-200-00-05', 'vasileva.ep@edms.local', '2026-03-05', 5);
 
-INSERT INTO lessons VALUES
-  (1, 1, 'Introduction to SQL', '2025-10-01', 90, 'online'),
-  (2, 1, 'SELECT and WHERE', '2025-10-03', 90, 'online'),
-  (3, 2, 'NumPy Basics', '2025-10-05', 120, 'online'),
-  (4, 2, 'Pandas Tables', '2025-10-08', 120, 'online'),
-  (5, 3, 'HTML Structure', '2025-10-07', 100, 'offline'),
-  (6, 3, 'CSS Basics', '2025-10-10', 100, 'offline'),
-  (7, 4, 'Window Functions', '2025-11-01', 110, 'online'),
-  (8, 4, 'CTE and Reports', '2025-11-05', 110, 'online');
+INSERT INTO actions (action_id, action_name, action_type, intensity_level, description) VALUES
+    (1, 'Бег', 'physical', 'high', 'Кардионагрузка высокой интенсивности'),
+    (2, 'Ходьба', 'physical', 'medium', 'Умеренная физическая активность'),
+    (3, 'Гимнастика', 'physical', 'medium', 'Комплекс лечебной гимнастики'),
+    (4, 'Чтение', 'intellectual', 'low', 'Интеллектуальная деятельность в покое'),
+    (5, 'Работа за компьютером', 'intellectual', 'medium', 'Длительная зрительная и интеллектуальная нагрузка'),
+    (6, 'Просмотр ТВ', 'intellectual', 'low', 'Пассивная деятельность в состоянии покоя');
 
-INSERT INTO enrollments VALUES
-  (1, 1, 1, '2025-09-20', 100, 'completed'),
-  (2, 1, 2, '2025-09-21', 65, 'in_progress'),
-  (3, 2, 1, '2025-09-22', 80, 'in_progress'),
-  (4, 2, 3, '2025-09-23', 100, 'completed'),
-  (5, 3, 3, '2025-09-24', 20, 'dropped'),
-  (6, 4, 2, '2025-09-25', 90, 'in_progress'),
-  (7, 4, 4, '2025-09-26', 40, 'in_progress'),
-  (8, 5, 1, '2025-09-27', 100, 'completed'),
-  (9, 5, 4, '2025-09-28', 50, 'in_progress');
+INSERT INTO symptoms (symptom_id, symptom_name, symptom_type, severity_scale, description) VALUES
+    (1, 'Головная боль', 'subjective', '1-5', 'Жалоба на головную боль'),
+    (2, 'Слабость', 'subjective', '1-5', 'Общее ощущение слабости'),
+    (3, 'Одышка', 'subjective', '1-5', 'Ощущение нехватки воздуха'),
+    (4, 'Боль в груди', 'subjective', '1-5', 'Дискомфорт или боль в грудной клетке'),
+    (5, 'Тревожность', 'subjective', '1-5', 'Повышенная тревожность или напряжение'),
+    (6, 'Без жалоб', 'subjective', '1-5', 'Отсутствие выраженных жалоб');
 
-INSERT INTO payments VALUES
-  (1, 1, '2025-09-20', 12000, 'card', 'paid'),
-  (2, 2, '2025-09-21', 18000, 'card', 'paid'),
-  (3, 3, '2025-09-22', 12000, 'transfer', 'pending'),
-  (4, 4, '2025-09-23', 15000, 'cash', 'paid'),
-  (5, 5, '2025-09-24', 15000, 'card', 'refunded'),
-  (6, 6, '2025-09-25', 18000, 'transfer', 'paid'),
-  (7, 7, '2025-09-26', 22000, 'card', 'paid'),
-  (8, 8, '2025-09-27', 12000, 'cash', 'paid'),
-  (9, 9, '2025-09-28', 22000, 'transfer', 'pending');
+INSERT INTO self_control_entries (entry_id, patient_id, action_id, symptom_id, entry_datetime, wellbeing_score, pulse, systolic_pressure, diastolic_pressure, temperature, data_source, notes) VALUES
+    (1, 1, 1, 2, '2026-03-10 08:00:00', 2, 112, 148, 96, 36.9, 'manual', 'После утреннего бега отмечена выраженная слабость'),
+    (2, 1, 2, 6, '2026-03-11 19:00:00', 4, 88, 128, 82, 36.7, 'sensor', 'Состояние стабильное после прогулки'),
+    (3, 1, 4, 1, '2026-03-12 21:00:00', 3, 76, 122, 80, 36.6, 'manual', 'Небольшая головная боль вечером'),
+    (4, 1, 5, 5, '2026-03-13 23:00:00', 2, 98, 138, 90, 36.8, 'manual', 'Усталость и тревожность после работы'),
+    (5, 1, 3, 2, '2026-03-14 09:00:00', 3, 102, 142, 92, 36.9, 'sensor', 'Гимнастика выполнена, состояние удовлетворительное'),
+    (6, 1, 1, 4, '2026-03-15 07:30:00', 1, 118, 152, 98, 37.0, 'sensor', 'После пробежки появилась боль в груди'),
+    (7, 1, 6, 6, '2026-03-16 20:30:00', 5, 72, 118, 78, 36.5, 'manual', 'Спокойный вечер без жалоб'),
+    (8, 1, 2, 2, '2026-03-17 18:10:00', 4, 86, 126, 80, 36.7, 'sensor', 'Прогулка перенесена хорошо'),
+    (9, 1, 5, 1, '2026-03-18 22:15:00', 2, 96, 136, 88, 36.8, 'manual', 'Головная боль после длительной работы'),
+    (10, 1, 1, 3, '2026-03-19 08:20:00', 1, 120, 154, 100, 37.1, 'sensor', 'Одышка после интенсивной нагрузки');
+
+INSERT INTO report_history (report_id, patient_id, doctor_id, report_type, period_start, period_end, generated_at, delivery_status) VALUES
+    (1, 1, 2, 'indicator_dynamics', '2026-03-10', '2026-03-19', '2026-03-19 09:00:00', 'generated'),
+    (2, 1, 2, 'worst_wellbeing_days', '2026-03-10', '2026-03-19', '2026-03-19 09:05:00', 'sent'),
+    (3, 1, 2, 'top_actions', '2026-03-10', '2026-03-19', '2026-03-19 09:10:00', 'delivered'),
+    (4, 2, 4, 'indicator_dynamics', '2026-03-11', '2026-03-18', '2026-03-18 20:00:00', 'generated'),
+    (5, 3, 1, 'worst_wellbeing_days', '2026-03-12', '2026-03-19', '2026-03-19 10:00:00', 'generated');
